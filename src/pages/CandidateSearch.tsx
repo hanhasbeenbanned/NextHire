@@ -30,6 +30,7 @@ const CandidateSearch = () => {
       }
     };
     fetchCandidates();
+    console.log(fetchCandidates);
   }, []);
 
   const currentCandidate = candidates[currentIndex];
