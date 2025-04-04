@@ -17,7 +17,12 @@ export default defineConfig({
     'process.env': process.env,
   },
   server: {
-    host: '0.0.0.0', // This is the key bit for Render!
-    port: 5173,      // Optional, but consistent
+    host: '0.0.0.0', 
+    port: 5173,     
+  },
+  preview: {
+    host: '0.0.0.0',
+    port: 4173,
+    allowedHosts: ['nexthire-jk2b.onrender.com'],
   },
 });
