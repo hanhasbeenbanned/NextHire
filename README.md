@@ -54,7 +54,7 @@ This project is licensed under the MIT license.
 
   ## Live Link
   Check out the deployed version and experience it live:
-  [Explore NextHire here!](https://nexthire-jk2b.onrender.com) 
+  [Explore NextHire here!](https://nexthire-55km.onrender.com) 
 
   ## Questions
   If you have any questions, feel free to contact me at [hannahbry05@gmail.com](mailto:hannahbry05@gmail.com).
