@@ -14,6 +14,10 @@ dotenv.config();
 
 export default defineConfig({
   define: {
-    'process.env': process.env, // Ensures env vars are available
+    'process.env': process.env,
+  },
+  server: {
+    host: '0.0.0.0', // This is the key bit for Render!
+    port: 5173,      // Optional, but consistent
   },
 });
