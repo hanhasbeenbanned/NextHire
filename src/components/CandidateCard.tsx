@@ -1,24 +1,32 @@
-import type Candidate from '../utils/interfaces/Candidate.interface';
+import type Candidate from '../interfaces/Candidate.interface';
 
 interface CandidateCardProps {
   currentCandidate: Candidate;
 }
 
-const CandidateCard = ({ currentCandidate }: CandidateCardProps) => (
-  <div>
-    <h2>{currentCandidate.name}</h2>
-    <p>Username: {currentCandidate.username}</p>
-    <p>Location: {currentCandidate.location}</p>
-    <img src={currentCandidate.avatar_url} alt="Avatar" width="100" />
-    <p>Email: {currentCandidate.email}</p>
-    <p>
-      Profile:{' '}
-      <a href={currentCandidate.html_url} target="_blank" rel="noopener noreferrer">
-        {currentCandidate.html_url}
-      </a>
-    </p>
-    <p>Company: {currentCandidate.company}</p>
-  </div>
-);
+const CandidateCard = ({ currentCandidate }: CandidateCardProps) => {
+  if (!currentCandidate) {
+    return <p>No candidate data available.</p>;
+  }
+
+  return (
+    <div className="candidateCard">
+      <img src={currentCandidate.avatar_url} alt={currentCandidate.username} />
+      <div className="profileInfo">
+        {currentCandidate.name ? (
+          <h2>
+            {currentCandidate.name} <i>({currentCandidate.username})</i>
+          </h2>
+        ) : (
+          <h2>{currentCandidate.username}</h2>
+        )}
+        {currentCandidate.location && <p>Location: {currentCandidate.location}</p>}
+        {currentCandidate.email && <p>Email: {currentCandidate.email}</p>}
+        {currentCandidate.company && <p>Company: {currentCandidate.company}</p>}
+        {currentCandidate.bio && <p>Bio: {currentCandidate.bio}</p>}
+      </div>
+    </div>
+  );
+};
 
 export default CandidateCard;

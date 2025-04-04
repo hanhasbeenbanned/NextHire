@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
   font-family: 'Inter Tight', system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -11,6 +11,15 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  color: #fff;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 a {
@@ -32,11 +41,13 @@ body {
   background-size: cover;
   background-repeat: no-repeat no-repeat;
   background-position: center center;
-  margin: 0;
-  place-items: center;
+  margin: 0; /* Remove default margin */
+  /* padding: 0; /* Remove default padding */
+  /* width: 100%; Ensure the body spans the full width */
+  /* place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
+} 
 
 h1 {
   font-size: 3.2em;
@@ -75,14 +86,7 @@ button:focus-visible {
   }
 }
 
-main {
-  color: #fff;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
 
 tr {
   border-radius: 10px;
@@ -96,25 +100,394 @@ tbody tr:nth-child(odd) {
 
 .nav {
   display: flex;
-  justify-content: flex-start;
-  padding: 1em 2em;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 2em; */
+  /* background-color: #333; */
+  /* color: white;
+}
+
+
+#searchSection {
+  width: 100%; Make the section span the full width */
+  /* padding: 1rem; Add some padding for spacing */
+  /* box-sizing: border-box; Include padding in the width calculation */
+/* }
+
+#searchSection input {
+  padding: 0.5em;
+  margin-right: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#searchSection button {
+  padding: 0.5em 1em;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#candidateSearchSection { */
+  /* width: 100%; Make the section span the full width */
+  /* padding: 1rem; Add some padding for spacing */
+  /* box-sizing: border-box; Include padding in the width calculation */
+/* } */
+
+/* .nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-item {
-  padding: 0 0.5rem;
-  list-style: none;
+  margin-left: 1em;
 }
 
 .nav-link {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 
-.active {
-  font-weight: 700;
+.nav-link.active {
+  font-weight: bold;
 }
 
 .table {
   width: 80vw;
   table-layout: fixed;
+} */ 
+
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  font-family: 'Inter Tight', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+main {
+  color: #fff;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2em;
+}
+
+body {
+  background: linear-gradient(
+    180deg,
+    rgb(32, 44, 136) 0%,
+    rgba(9, 9, 121, 1) 15%,
+    rgba(0, 2, 18, 1) 100%
+  );
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  /* display: flex; */
+  /* justify-content: center; */
+}
+
+/* Navigation Bar */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1em 2em;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-right: 1.5em;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #646cff;
+}
+
+/* Main Title */
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  text-align: center;
+  margin: 1em 0 0.5em 0;
+}
+
+/* Search Section (Below Title) */
+
+#searchSection {
+  margin-bottom: 2em;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  flex-direction: column;
+}
+
+#searchSection input {
+  padding: 0.5em;
+  margin-right: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  width: 200px;
+}
+
+#searchSection button {
+  padding: 0.5em 1em;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+#searchSection button.save {
+  margin: 2em;
+}
+
+#searchSection button.no {
+  margin: 2em;
+}
+
+/* Candidate Card (Used in Both Pages) */
+.candidateCard {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  max-width: 90vw;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 1em 0;
+}
+
+.candidateCard img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.candidateCard .profileInfo {
+  background-color: #000;
+  color: #fff;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.candidateCard h2 {
+  margin: 0 0 0.5em 0;
+  font-size: 1.5em;
+}
+
+.candidateCard p {
+  margin: 0.25em 0;
+  font-size: 1em;
+}
+
+.candidateCard i {
+  font-style: italic;
+  color: #ccc;
+}
+
+/* Buttons Below Candidate Card (CandidateSearch Page) */
+#candidateSearchSection > div {
+  display: flex;
+  gap: 1em;
+  margin-top: 1em;
+  justify-content: center;
+}
+
+/* Saved Candidates Table (SavedCandidates Page) */
+#savedCandidatesSection {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+  border-spacing: 10px;
+  table-layout: fixed;
+}
+
+.table th,
+.table td {
+  padding: 0.75em;
+  width: 100%;
+  text-align: left;
+  border: 1px solid #444; /* Grey borders for the grid */
+}
+
+.table th {
+  background-color: #1a1a1a; /* Dark grey header */
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+.table tbody tr {
+  background-color: #000; /* Black background for rows */
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #333; /* Grey background for odd rows */
+}
+
+.table img {
+  height: 130px;
+  border-radius: 40px; /* Smaller height for table */
+}
+
+/* Username and Remove Button in Table */
+.table td:first-child {
+  font-weight: bold;
+}
+
+/* Remove Button in Table */
+.table button {
+  background-color: #ff4d4d; /* Red */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+.table button:hover {
+  background-color: #ff6666;
+}
+
+/* General Button Styling */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  color: #fff;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+/* CandidateSearch Page Buttons */
+#candidateSearchSection button:first-child {
+  background-color: #28a745; /* Green for "+" */
+}
+
+#candidateSearchSection button:last-child {
+  background-color: #ff4d4d; /* Red for "−" */
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .nav {
+    padding: 1em;
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  #searchSection input {
+    width: 150px;
+  }
+
+  .candidateCard {
+    width: 80vw;
+  }
+
+  .table {
+    font-size: 0.9em;
+  }
+
+  .table .candidateCard img {
+    height: 120px; /* Even smaller for mobile */
+  }
+
+  .table th,
+  .table td {
+    padding: 0.5em;
+  }
+}
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  button {
+    background-color: #f9f9f9;
+    color: #213547;
+  }
+  .nav-link {
+    color: #213547;
+  }
+  .candidateCard .profileInfo {
+    background-color: #333;
+    color: #fff;
+  }
+  .table th {
+    background-color: #e0e0e0;
+    color: #213547;
+  }
+  .table tbody tr {
+    background-color: #f0f0f0;
+    color: #213547;
+  }
+  .table tbody tr:nth-child(odd) {
+    background-color: #d0d0d0;
+  }
+} */

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';  
-import CandidateCard from '../components/CandidateCard';
-import type Candidate from '../utils/interfaces/Candidate.interface';
+import type Candidate from '../interfaces/Candidate.interface';
 
 const SavedCandidates = () => {
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
@@ -23,12 +22,34 @@ const SavedCandidates = () => {
   return (
     <section id="savedCandidatesSection">
       <h1>Potential Candidates</h1>
-      {savedCandidates.map((candidate, index) => (
-        <div key={candidate.username}>
-          <CandidateCard currentCandidate={candidate} />
-          <button onClick={() => removeCandidate(index)}>-</button>
-        </div>
-      ))}
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Email</th>
+            <th>Company</th>
+            <th>Bio</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          {savedCandidates.map((candidate, index) => (
+            <tr key={candidate.username}>
+              <td><img src={candidate.avatar_url} alt={candidate.username} /></td>
+              <td>{candidate.name}</td>
+              <td>{candidate.location}</td>
+              <td>{candidate.email}</td>
+              <td>{candidate.company}</td>
+              <td>{candidate.bio}</td>
+              <td>
+                <button onClick={() => removeCandidate(index)}>-</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </section>
   );
 };

@@ -1,27 +1,36 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
-import type Candidate from '../utils/interfaces/Candidate.interface';
+import type Candidate from '../interfaces/Candidate.interface';
 import CandidateCard from '../components/CandidateCard';
-import { GitHubUser } from '../utils/interfaces/GitHubUser.interface';
-
 
 const CandidateSearch = () => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [searchInput, setSearchInput] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchCandidates = async () => {
       try {
         const data = await searchGithub();
-        const mappedCandidates: Candidate[] = data.map((user: GitHubUser) => ({
-          name: user.name || 'Unknown',
+        interface GithubUser {
+          name: string | null;
+          login: string;
+          location: string | null;
+          avatar_url: string;
+          email: string | null;
+          html_url: string;
+          company: string | null;
+        }
+
+        const mappedCandidates: Candidate[] = data.map((user: GithubUser) => ({
+          name: user.name,
           username: user.login,
-          location: user.location || 'Not specified',
+          location: user.location,
           avatar: user.avatar_url,
-          email: user.email || 'Not available',
+          email: user.email,
           html_url: user.html_url,
-          company: user.company || 'Not specified',
+          company: user.company,
         }));
         setCandidates(mappedCandidates);
       } catch (error) {
@@ -30,7 +39,6 @@ const CandidateSearch = () => {
       }
     };
     fetchCandidates();
-    console.log(fetchCandidates);
   }, []);
 
   const currentCandidate = candidates[currentIndex];
@@ -44,29 +52,31 @@ const CandidateSearch = () => {
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev < candidates.length - 1 ? prev + 1 : candidates.length));
+    setCurrentIndex((prev) => (prev < candidates.length - 1 ? prev + 1 : 0));
   };
 
   const handleSearch = async (event: FormEvent) => {
     event.preventDefault();
+    setErrorMessage(null);
     if (!searchInput.trim()) return;
     try {
       const data = await searchGithubUser(searchInput);
       const searchedCandidate: Candidate = {
-        name: data.name || 'Unknown',
+        name: data.login,
         username: data.login,
-        location: data.location || 'Not specified',
+        location: data.location,
         avatar_url: data.avatar_url,
-        email: data.email || 'Not available',
+        email: data.email,
         html_url: data.html_url,
-        company: data.company || 'Not specified',
+        company: data.company,
+        bio: data.bio,
       };
-      // Replace current candidates with just this one
       setCandidates([searchedCandidate]);
       setCurrentIndex(0);
-      setSearchInput(''); // Clear input after search
+      setSearchInput('');
     } catch (error) {
       console.error('Error searching user:', error);
+      setErrorMessage('Failed to fetch user. Please try again.');
     }
   };
 
@@ -75,7 +85,12 @@ const CandidateSearch = () => {
   }
 
   return (
+    <section id= "searchPage">
+    <h1>Candidate Search</h1>
     <section id="searchSection">
+      
+      {errorMessage && <p className="error">{errorMessage}</p>}
+      
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -86,17 +101,21 @@ const CandidateSearch = () => {
         <button type="submit">Search</button>
       </form>
 
-      {currentCandidate ? (
-        <>
-          <CandidateCard currentCandidate={currentCandidate} />
-          <div>
-            <button onClick={saveCandidate}>+</button>
-            <button onClick={goToNext}>-</button>
-          </div>
-        </>
-      ) : (
-        <p>No more candidates available to review.</p>
-      )}
+      <section id="candidateSearchSection">
+        
+        {currentCandidate ? (
+          <>
+            <CandidateCard currentCandidate={currentCandidate} />
+            <div>
+              <button className='save' onClick={saveCandidate}>+</button>
+              <button className='no' onClick={goToNext}>-</button>
+            </div>
+          </>
+        ) : (
+          <p>No more candidates available to review.</p>
+        )}
+      </section>
+    </section>
     </section>
   );
 };
